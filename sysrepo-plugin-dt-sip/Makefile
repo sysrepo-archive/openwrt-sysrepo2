@@ -8,15 +8,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sysrepo-plugin-dt-sip
-PKG_VERSION:=1
-PKG_RELEASE:=1
+PKG_VERSION:=1.0
 
-PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
+PKG_LICENSE:=GPL-2.0+
+PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 
-PKG_FIXUP:=libtool
-PKG_INSTALL:=1
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-sip
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_VERSION:=c712f0249f5e17b977bec2bb139f9ab0241b5178
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
-CMAKE_OPTIONS += -DCMAKE_C_FLAGS="-Wall -g"
+PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -24,7 +27,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/sysrepo-plugin-dt-sip
   SECTION:=net
   CATEGORY:=Network
-	DEPENDS:=+libuci +libubus +sysrepoctl +sysrepo-plugind +libblobmsg-json
+  DEPENDS:=+libuci +libubus +sysrepoctl +sysrepo-plugind +libblobmsg-json
   TITLE:=sysrepo-plugin-dt-sip
 endef
 
@@ -32,16 +35,9 @@ define Package/sysrepo-plugin-dt-sip/description
   sysrepo-plugin-dt-sip is a plugin daemon for sysrepo datastore. It manages SIP asterisk configuration.
 endef
 
-##new from nvram example
-define Build/Prepare
-	mkdir -p $(PKG_BUILD_DIR)
-	$(CP) ./src/* $(PKG_BUILD_DIR)/
-	mkdir -p $(1)/usr/lib/sysrepo/plugins
-endef
-
 define Package/sysrepo-plugin-dt-sip/install
 	$(INSTALL_DIR) $(1)/usr/lib/sysrepo/plugins
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/libsysrepo-plugin-dt-sip.so $(1)/usr/lib/sysrepo/plugins
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/sip.so $(1)/usr/lib/sysrepo/plugins
 
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/config/asterisk $(1)/etc/config/

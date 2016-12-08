@@ -16,7 +16,7 @@ PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-network
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=b6eaa8739b7c88ea9309f7acb1df5860c533771d
+PKG_SOURCE_VERSION:=0dd1198c1c2fd772e9695edae187f368e4479c85
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_PARALLEL:=1
@@ -37,7 +37,7 @@ endef
 
 define Package/sysrepo-plugin-dt-network/install
 	$(INSTALL_DIR) $(1)/usr/lib/sysrepo/plugins
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/sysrepo-plugin-network.so $(1)/usr/lib/sysrepo/plugins
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/sysrepo-plugin-dt-network.so $(1)/usr/lib/sysrepo/plugins
 
 	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-ip@2014-06-16.yang $(1)/etc/sysrepo/yang

@@ -1,0 +1,42 @@
+From a48c5ac946f7136373b56fe36a50d0ea740b3176 Mon Sep 17 00:00:00 2001
+From: Mislav Novakovic <mislav.novakovic@sartura.hr>
+Date: Thu, 8 Dec 2016 12:43:06 +0100
+Subject: [PATCH] fix
+
+Signed-off-by: Mislav Novakovic <mislav.novakovic@sartura.hr>
+---
+ CMakeLists.txt | 14 +++-----------
+ 1 file changed, 3 insertions(+), 11 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 474cfae..cf04387 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -2,21 +2,13 @@ cmake_minimum_required(VERSION 2.8)
+ set(LIB_INSTALL_DIR "lib")
+ set(PLUGINS_DIR "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/sysrepo/plugins/" CACHE PATH "Sysrepo plugins directory.")
+ 
+-set(CMAKE_C_FLAGS         "${CMAKE_C_FLAGS} -Wall -Wpedantic -std=gnu11")
+-if(CMAKE_COMPILER_IS_GNUCC)
+-    # disable strict aliasing in GCC, since it produces false alarams in libev
+-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-strict-aliasing")
+-endif()
+-set(CMAKE_C_FLAGS_RELEASE "-DNDEBUG -O2")
+-set(CMAKE_C_FLAGS_DEBUG   "-g -O0")
+-
+ # include custom Modules
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
+ 
+ find_package(SYSREPO REQUIRED)
+ include_directories(${SYSREPO_INCLUDE_DIRS})
+ 
+-add_library(firmware_commit SHARED firmware-upgrade.c)
+-target_link_libraries(firmware_commit ${SYSREPO_LIBRARIES})
++add_library(sysrepo-plugin-fw SHARED src/firmware-upgrade.c)
++target_link_libraries(sysrepo-plugin-fw ${SYSREPO_LIBRARIES})
+ 
+-install(TARGETS firmware_commit DESTINATION ${PLUGINS_DIR})
++install(TARGETS sysrepo-plugin-fw DESTINATION ${PLUGINS_DIR})
+-- 
+2.10.2
+

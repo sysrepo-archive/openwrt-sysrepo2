@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -x /bin/sysrepoctl ]; then
+	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-system
+	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-system-openwrt
+	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m opencpe-firmware-mgmt
+fi
+
+exit 0

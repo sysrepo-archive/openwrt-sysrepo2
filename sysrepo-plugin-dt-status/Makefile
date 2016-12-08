@@ -16,7 +16,7 @@ PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-status
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=91680f8536a21860e267b6fccfe0a69b686c6432
+PKG_SOURCE_VERSION:=2229af41a9fdfeadcc5fd1167a2210c1a2de56bd
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_PARALLEL:=1
@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/sysrepo-plugin-dt-status
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libuci +libjson-c
+  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libuci +libjson-c +libubus
   TITLE:=sysrepo-plugin-dt-status
 endef
 
@@ -37,7 +37,7 @@ endef
 
 define Package/sysrepo-plugin-dt-status/install
 	$(INSTALL_DIR) $(1)/usr/lib/sysrepo/plugins
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/sysrepo-plugin-status.so $(1)/usr/lib/sysrepo/plugins
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/sysrepo-plugin-dt-status.so $(1)/usr/lib/sysrepo/plugins
 
 	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/status@2015-12-1.yang $(1)/etc/sysrepo/yang

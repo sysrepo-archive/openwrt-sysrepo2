@@ -16,7 +16,7 @@ PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-network
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=81608ae88530b0ed0e3bd0673750aee18a8a97dd
+PKG_SOURCE_VERSION:=82beb46f32d1b2345c09b048b4e3be956892b8fb
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_PARALLEL:=1
@@ -45,8 +45,23 @@ define Package/sysrepo-plugin-dt-network/install
 	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-interfaces@2014-05-08.yang $(1)/etc/sysrepo/yang
 
+	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-x509-cert-to-name.yang $(1)/etc/sysrepo/yang
+
+	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-ssh-server.yang $(1)/etc/sysrepo/yang
+
+	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-system-keychain.yang $(1)/etc/sysrepo/yang
+
+	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-tls-server.yang $(1)/etc/sysrepo/yang
+
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/network-plugin.default $(1)/etc/uci-defaults/network-plugin.default
+
+	$(INSTALL_DIR) $(1)/usr/share/freenetconfd/network
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/network_scripts/* $(1)/usr/share/freenetconfd/network
 endef
 
 $(eval $(call BuildPackage,sysrepo-plugin-dt-network))

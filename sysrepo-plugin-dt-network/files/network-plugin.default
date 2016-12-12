@@ -1,6 +1,10 @@
 #!/bin/sh
 
 if [ -x /bin/sysrepoctl ]; then
+	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-x509-cert-to-name
+	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-system-keychain
+	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-tls-server
+	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-ssh-server
 	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-interfaces
 	sysrepoctl --init --search-dir=/etc/sysrepo/yang --m ietf-ip
 fi

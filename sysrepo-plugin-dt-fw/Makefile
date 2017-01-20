@@ -16,7 +16,7 @@ PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-fw
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=1a323460842c680c530f3570ca264bca639ed71d
+PKG_SOURCE_VERSION:=8821682
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_PARALLEL:=1
@@ -56,6 +56,12 @@ define Package/sysrepo-plugin-dt-fw/install
 
 	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-keystore.yang $(1)/etc/sysrepo/yang
+
+	$(INSTALL_DIR) $(1)/etc/cert
+	$(INSTALL_BIN) ./files/sysrepo_plugin_fw.pem $(1)/etc/cert/sysrepo_plugin_fw.pem
+
+	$(INSTALL_DIR) $(1)/etc/cert
+	$(INSTALL_BIN) ./files/sysrepo_plugin_fw.pub $(1)/etc/cert/sysrepo_plugin_fw.pub
 
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/fw-plugin.default $(1)/etc/uci-defaults/fw-plugin.default

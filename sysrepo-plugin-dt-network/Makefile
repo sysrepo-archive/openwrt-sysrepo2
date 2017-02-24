@@ -16,7 +16,7 @@ PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-network
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=82beb46f32d1b2345c09b048b4e3be956892b8fb
+PKG_SOURCE_VERSION:=496244445d7b8129e3201618f1ec3e3628e4d52b
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_PARALLEL:=1
@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/sysrepo-plugin-dt-network
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json
+  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libnl
   TITLE:=sysrepo-plugin-dt-network
 endef
 

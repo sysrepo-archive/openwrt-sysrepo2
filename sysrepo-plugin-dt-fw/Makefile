@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/sysrepo-plugin-dt-fw
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libcurl +libopenssl
+  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libcurl +libopenssl +sysrepo-plugin-dt-network
   TITLE:=sysrepo-plugin-dt-fw
 endef
 
@@ -40,22 +40,7 @@ define Package/sysrepo-plugin-dt-fw/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/sysrepo-plugin-dt-fw.so $(1)/usr/lib/sysrepo/plugins
 
 	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-system@2014-08-06.yang $(1)/etc/sysrepo/yang
-
-	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/opencpe-firmware-mgmt@2014-02-06.yang $(1)/etc/sysrepo/yang
-
-	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-x509-cert-to-name.yang $(1)/etc/sysrepo/yang
-
-	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/iana-crypt-hash.yang $(1)/etc/sysrepo/yang
-
-	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-ssh-server.yang $(1)/etc/sysrepo/yang
-
-	$(INSTALL_DIR) $(1)/etc/sysrepo/yang
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/yang/ietf-keystore.yang $(1)/etc/sysrepo/yang
 
 	$(INSTALL_DIR) $(1)/etc/cert
 	$(INSTALL_BIN) ./files/sysrepo_plugin_fw.pem $(1)/etc/cert/sysrepo_plugin_fw.pem

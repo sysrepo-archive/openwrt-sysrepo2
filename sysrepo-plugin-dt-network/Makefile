@@ -16,7 +16,7 @@ PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-network
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=496244445d7b8129e3201618f1ec3e3628e4d52b
+PKG_SOURCE_VERSION:=80ec13175158d1de48795c3e2c214140dba2f1f0
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_PARALLEL:=1
@@ -60,8 +60,8 @@ define Package/sysrepo-plugin-dt-network/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/network-plugin.default $(1)/etc/uci-defaults/network-plugin.default
 
-	$(INSTALL_DIR) $(1)/usr/share/freenetconfd/network
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/network_scripts/* $(1)/usr/share/freenetconfd/network
+	$(INSTALL_DIR) $(1)/usr/share/sysrepo/network
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/network_scripts/* $(1)/usr/share/sysrepo/network
 endef
 
 $(eval $(call BuildPackage,sysrepo-plugin-dt-network))

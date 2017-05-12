@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/sysrepo-plugin-dt-fw
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libcurl +libopenssl +sysrepo-plugin-dt-network
+  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libcurl +libopenssl
   TITLE:=sysrepo-plugin-dt-fw
 endef
 

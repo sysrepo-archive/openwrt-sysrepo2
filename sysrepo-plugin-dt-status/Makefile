@@ -13,6 +13,7 @@ PKG_VERSION:=1.0
 PKG_LICENSE:=GPL-2.0+
 PKG_MAINTAINER:=Antonio Paunovic <antonio.paunovic@sartura.hr>
 
+
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/sysrepo/sysrepo-plugin-dt-status
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -27,7 +28,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/sysrepo-plugin-dt-status
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+sysrepoctl +sysrepo-plugind +libblobmsg-json +libuci +libjson-c +libubus
+  DEPENDS:=+sysrepoctl +libblobmsg-json +libuci +libjson-c +libubus
   TITLE:=sysrepo-plugin-dt-status
 endef
 

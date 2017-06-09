@@ -28,7 +28,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/sysrepo-plugin-dt-sip
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libuci +libubus +sysrepoctl +sysrepo-plugind +libblobmsg-json
+  DEPENDS:=+libuci +libubus +sysrepoctl +sysrepo +libblobmsg-json
   TITLE:=sysrepo-plugin-dt-sip
 endef
 
